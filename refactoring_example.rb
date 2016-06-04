@@ -81,8 +81,7 @@ class CorrectAnswerBehavior
   end
 
   def move_to_next_player!
-    @current_player += 1
-    @current_player = 0 if @current_player == @players.length
+    @current_player = (@current_player + 1) % @players.length
   end
 
   def current_player_is_winner?
