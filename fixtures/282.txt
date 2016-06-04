@@ -1,0 +1,4 @@
+Answer was corrent!!!!
+Bob now has 6 Gold Coins.
+Player is now Cecil
+result was false

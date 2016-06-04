@@ -1,0 +1,3 @@
+Alice stays in penalty box
+Player is now Bob
+result was true

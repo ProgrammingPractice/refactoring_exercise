@@ -1,0 +1,4 @@
+Answer was corrent!!!!
+Cecil now has 7 Gold Coins.
+Player is now Alice
+result was true

@@ -1,0 +1,5 @@
+Alice got out of penalty box
+Answer was correct!!!!
+Alice now has 6 Gold Coins.
+Player is now Bob
+result was false

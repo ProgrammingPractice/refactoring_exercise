@@ -1,0 +1,3 @@
+Bob stays in penalty box
+Player is now Cecil
+result was true
