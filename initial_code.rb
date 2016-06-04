@@ -72,14 +72,16 @@ class CorrectAnswerBehavior
       return winner
     end
   end
-private
+  
+  private
   def did_player_win
     !(@purses[@current_player] == 6)
   end
 
 # ------------------------------ REFACTORING END ------------------------------
 
-public
+  public
+
   def initialize seed = nil
     srand(seed) if seed
     @players = %w[Alice Bob Cecil]
