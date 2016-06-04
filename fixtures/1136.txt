@@ -1,4 +1,4 @@
-Answer was corrent!!!!
+Answer was correct!!!!
 Bob now has 8 Gold Coins.
 Player is now Cecil
 result was true

@@ -62,7 +62,7 @@ class CorrectAnswerBehavior
         true
       end
     else
-      puts "Answer was corrent!!!!"
+      puts "Answer was correct!!!!"
       current_player_gets_one_coin!
       print_current_player_coins
       winner = did_player_win
