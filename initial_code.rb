@@ -42,7 +42,7 @@
 # ------------------------------ REFACTORING START ------------------------------
 class CorrectAnswerBehavior
 
-  def was_correctly_answered
+  def was_correctly_answered?
     if @in_penalty_box[@current_player]
       if @is_getting_out_of_penalty_box
         puts "#{@players[@current_player]} got out of penalty box"
@@ -72,7 +72,7 @@ class CorrectAnswerBehavior
       return winner
     end
   end
-  
+
   private
   def did_player_win
     !(@purses[@current_player] == 6)
@@ -139,7 +139,7 @@ end
 
 SIMULATIONS_COUNT = 5000
 def run_simulation index = nil
-  result = CorrectAnswerBehavior.new(index).was_correctly_answered
+  result = CorrectAnswerBehavior.new(index).was_correctly_answered?
   puts "result was #{result}"
 end
 
