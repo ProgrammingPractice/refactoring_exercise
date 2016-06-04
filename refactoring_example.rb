@@ -43,39 +43,48 @@
 class CorrectAnswerBehavior
 
   def was_correctly_answered?
-    if @in_penalty_box[@current_player]
+    if current_player_in_penalty_box?
       if @is_getting_out_of_penalty_box
-        puts "#{@players[@current_player]} got out of penalty box"
+        puts "#{current_player_name} got out of penalty box"
         puts 'Answer was correct!!!!'
         @purses[@current_player] += 1
-        puts "#{@players[@current_player]} now has #{@purses[@current_player]} Gold Coins."
+        puts "#{current_player_name} now has #{@purses[@current_player]} Gold Coins."
         winner = did_player_win()
         @current_player += 1
         @current_player = 0 if @current_player == @players.length
-        puts "Player is now #{@players[@current_player]}"
+        puts "Player is now #{current_player_name}"
         winner
       else
-        puts "#{@players[@current_player]} stays in penalty box"
+        puts "#{current_player_name} stays in penalty box"
         @current_player += 1
         @current_player = 0 if @current_player == @players.length
-        puts "Player is now #{@players[@current_player]}"
+        puts "Player is now #{current_player_name}"
         true
       end
     else
       puts "Answer was corrent!!!!"
       @purses[@current_player] += 1
-      puts "#{@players[@current_player]} now has #{@purses[@current_player]} Gold Coins."
+      puts "#{current_player_name} now has #{@purses[@current_player]} Gold Coins."
       winner = did_player_win
       @current_player += 1
       @current_player = 0 if @current_player == @players.length
-      puts "Player is now #{@players[@current_player]}"
+      puts "Player is now #{current_player_name}"
       return winner
     end
   end
 
   private
+
   def did_player_win
     !(@purses[@current_player] == 6)
+  end
+
+  def current_player_in_penalty_box?
+    @in_penalty_box[@current_player]
+  end
+
+  def current_player_name
+    @players[@current_player]
   end
 
 # ------------------------------ REFACTORING END ------------------------------
