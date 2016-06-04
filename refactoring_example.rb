@@ -44,14 +44,12 @@ class CorrectAnswerBehavior
 
   def was_correctly_answered?
     if current_player_in_penalty_box?
-      if @is_getting_out_of_penalty_box
+      if current_player_exits_penalty_box?
         puts "#{current_player_name} got out of penalty box"
         play_round
       else
         puts "#{current_player_name} stays in penalty box"
-        move_to_next_player!
-        print_next_player
-        true
+        skip_round
       end
     else
       play_round
@@ -63,11 +61,19 @@ class CorrectAnswerBehavior
   def play_round
     print_correct_answer_message
     current_player_gets_one_coin!
+
     print_current_player_coins
     is_winner = current_player_is_winner?
+
     move_to_next_player!
     print_next_player
     is_winner
+  end
+
+  def skip_round
+    move_to_next_player!
+    print_next_player
+    true
   end
 
   def current_player_gets_one_coin!
@@ -85,6 +91,10 @@ class CorrectAnswerBehavior
 
   def current_player_in_penalty_box?
     @in_penalty_box[@current_player]
+  end
+
+  def current_player_exits_penalty_box?
+    @is_getting_out_of_penalty_box
   end
 
   def current_player_name
