@@ -49,11 +49,11 @@ class CorrectAnswerBehavior
         print_correct_answer_message
         current_player_gets_one_coin!
         print_current_player_coins
-        winner = did_player_win()
+        is_winner = current_player_is_winner?
         @current_player += 1
         @current_player = 0 if @current_player == @players.length
         print_next_player
-        winner
+        is_winner
       else
         puts "#{current_player_name} stays in penalty box"
         @current_player += 1
@@ -65,11 +65,11 @@ class CorrectAnswerBehavior
       print_correct_answer_message
       current_player_gets_one_coin!
       print_current_player_coins
-      winner = did_player_win
+      is_winner = current_player_is_winner?
       @current_player += 1
       @current_player = 0 if @current_player == @players.length
       print_next_player
-      return winner
+      is_winner
     end
   end
 
@@ -79,8 +79,8 @@ class CorrectAnswerBehavior
     @purses[@current_player] += 1
   end
 
-  def did_player_win
-    !(current_player_coins == 6)
+  def current_player_is_winner?
+    current_player_coins != 6
   end
 
   def current_player_in_penalty_box?
