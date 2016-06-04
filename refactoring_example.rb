@@ -48,27 +48,27 @@ class CorrectAnswerBehavior
         puts "#{current_player_name} got out of penalty box"
         puts 'Answer was correct!!!!'
         current_player_gets_one_coin!
-        puts "#{current_player_name} now has #{current_player_coins} Gold Coins."
+        print_current_player_coins
         winner = did_player_win()
         @current_player += 1
         @current_player = 0 if @current_player == @players.length
-        puts "Player is now #{current_player_name}"
+        print_next_player
         winner
       else
         puts "#{current_player_name} stays in penalty box"
         @current_player += 1
         @current_player = 0 if @current_player == @players.length
-        puts "Player is now #{current_player_name}"
+        print_next_player
         true
       end
     else
       puts "Answer was corrent!!!!"
       current_player_gets_one_coin!
-      puts "#{current_player_name} now has #{current_player_coins} Gold Coins."
+      print_current_player_coins
       winner = did_player_win
       @current_player += 1
       @current_player = 0 if @current_player == @players.length
-      puts "Player is now #{current_player_name}"
+      print_next_player
       return winner
     end
   end
@@ -93,6 +93,14 @@ class CorrectAnswerBehavior
 
   def current_player_coins
     @purses[@current_player]
+  end
+
+  def print_current_player_coins
+    puts "#{current_player_name} now has #{current_player_coins} Gold Coins."
+  end
+
+  def print_next_player
+    puts "Player is now #{current_player_name}"
   end
 
 # ------------------------------ REFACTORING END ------------------------------
