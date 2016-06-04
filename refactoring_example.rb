@@ -46,13 +46,7 @@ class CorrectAnswerBehavior
     if current_player_in_penalty_box?
       if @is_getting_out_of_penalty_box
         puts "#{current_player_name} got out of penalty box"
-        print_correct_answer_message
-        current_player_gets_one_coin!
-        print_current_player_coins
-        is_winner = current_player_is_winner?
-        move_to_next_player!
-        print_next_player
-        is_winner
+        play_round
       else
         puts "#{current_player_name} stays in penalty box"
         move_to_next_player!
@@ -60,17 +54,21 @@ class CorrectAnswerBehavior
         true
       end
     else
-      print_correct_answer_message
-      current_player_gets_one_coin!
-      print_current_player_coins
-      is_winner = current_player_is_winner?
-      move_to_next_player!
-      print_next_player
-      is_winner
+      play_round
     end
   end
 
   private
+
+  def play_round
+    print_correct_answer_message
+    current_player_gets_one_coin!
+    print_current_player_coins
+    is_winner = current_player_is_winner?
+    move_to_next_player!
+    print_next_player
+    is_winner
+  end
 
   def current_player_gets_one_coin!
     @purses[@current_player] += 1
