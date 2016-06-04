@@ -46,7 +46,7 @@ class CorrectAnswerBehavior
     if current_player_in_penalty_box?
       if @is_getting_out_of_penalty_box
         puts "#{current_player_name} got out of penalty box"
-        puts 'Answer was correct!!!!'
+        print_correct_answer_message
         current_player_gets_one_coin!
         print_current_player_coins
         winner = did_player_win()
@@ -62,7 +62,7 @@ class CorrectAnswerBehavior
         true
       end
     else
-      puts "Answer was correct!!!!"
+      print_correct_answer_message
       current_player_gets_one_coin!
       print_current_player_coins
       winner = did_player_win
@@ -101,6 +101,10 @@ class CorrectAnswerBehavior
 
   def print_next_player
     puts "Player is now #{current_player_name}"
+  end
+
+  def print_correct_answer_message
+    puts 'Answer was correct!!!!'
   end
 
 # ------------------------------ REFACTORING END ------------------------------
