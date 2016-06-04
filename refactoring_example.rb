@@ -43,22 +43,30 @@
 class CorrectAnswerBehavior
 
   def was_correctly_answered?
-    if current_player_in_penalty_box?
-      if current_player_exits_penalty_box?
-        puts "#{current_player_name} got out of penalty box"
-        play_round
-      else
-        puts "#{current_player_name} stays in penalty box"
-        skip_round
-      end
+    round_skipped = penalty_box_behavior!
+
+    if round_skipped
+      true
     else
-      play_round
+      play_round!
     end
   end
 
   private
 
-  def play_round
+  def penalty_box_behavior!
+    return false unless current_player_in_penalty_box?
+
+    if current_player_stays_penalty_box?
+      puts "#{current_player_name} stays in penalty box"
+      skip_round!
+      return true
+    end
+    
+    puts "#{current_player_name} got out of penalty box"
+  end
+
+  def play_round!
     print_correct_answer_message
     current_player_gets_one_coin!
 
@@ -70,10 +78,9 @@ class CorrectAnswerBehavior
     is_winner
   end
 
-  def skip_round
+  def skip_round!
     move_to_next_player!
     print_next_player
-    true
   end
 
   def current_player_gets_one_coin!
@@ -92,8 +99,8 @@ class CorrectAnswerBehavior
     @in_penalty_box[@current_player]
   end
 
-  def current_player_exits_penalty_box?
-    @is_getting_out_of_penalty_box
+  def current_player_stays_penalty_box?
+    !@is_getting_out_of_penalty_box
   end
 
   def current_player_name
