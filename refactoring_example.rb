@@ -57,16 +57,16 @@ class CorrectAnswerBehavior
   private
 
   def the_player_is_blocked_in_penalty_box?
-    current_player_in_penalty_box? && print_penalty_box_messages?
+    return false unless current_player_in_penalty_box?
+    print_penalty_box_messages
+    current_player_stays_in_penalty_box?
   end
 
-  def print_penalty_box_messages?
+  def print_penalty_box_messages
     if current_player_stays_in_penalty_box?
       puts "#{current_player_name} stays in penalty box"
-      true
     else
       puts "#{current_player_name} got out of penalty box"
-      false
     end
   end
 
