@@ -45,7 +45,7 @@ class CorrectAnswerBehavior
   def was_correctly_answered?
     correctly_answered = true
 
-    unless the_player_is_blocked_in_penalty_box?
+    if is_allowed_to_play?
       correctly_answered = play_round!
     end
 
@@ -56,17 +56,17 @@ class CorrectAnswerBehavior
 
   private
 
-  def the_player_is_blocked_in_penalty_box?
-    return false unless current_player_in_penalty_box?
+  def is_allowed_to_play?
+    return true if current_player_not_in_penalty_box?
     print_penalty_box_messages
-    current_player_stays_in_penalty_box?
+    current_player_leaves_penalty_box?
   end
 
   def print_penalty_box_messages
-    if current_player_stays_in_penalty_box?
-      puts "#{current_player_name} stays in penalty box"
-    else
+    if current_player_leaves_penalty_box?
       puts "#{current_player_name} got out of penalty box"
+    else
+      puts "#{current_player_name} stays in penalty box"
     end
   end
 
@@ -95,12 +95,12 @@ class CorrectAnswerBehavior
     current_player_coins != 6
   end
 
-  def current_player_in_penalty_box?
-    @in_penalty_box[@current_player]
+  def current_player_not_in_penalty_box?
+    !@in_penalty_box[@current_player]
   end
 
-  def current_player_stays_in_penalty_box?
-    !@is_getting_out_of_penalty_box
+  def current_player_leaves_penalty_box?
+    @is_getting_out_of_penalty_box
   end
 
   def current_player_name
