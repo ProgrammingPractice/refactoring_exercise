@@ -44,10 +44,10 @@ class CorrectAnswerBehavior
 
   def was_correctly_answered?
     blocked_in_penalty = the_player_is_blocked_in_penalty_box?
-    correctly_answerd = "ABC"
+    correctly_answered = "ABC"
 
     if !blocked_in_penalty
-      correctly_answerd = play_round!
+      correctly_answered = play_round!
     end
 
     advance_player!
@@ -55,24 +55,24 @@ class CorrectAnswerBehavior
     if blocked_in_penalty
       true
     else
-      correctly_answerd
+      correctly_answered
     end
   end
 
   private
 
   def the_player_is_blocked_in_penalty_box?
-    current_player_in_penalty_box? && foo
+    current_player_in_penalty_box? && print_penalty_box_messages?
   end
 
-  def foo
-    if current_player_stays_penalty_box?
+  def print_penalty_box_messages?
+    if current_player_stays_in_penalty_box?
       puts "#{current_player_name} stays in penalty box"
       true
     else
       puts "#{current_player_name} got out of penalty box"
       false
-    end    
+    end
   end
 
   def play_round!
@@ -104,7 +104,7 @@ class CorrectAnswerBehavior
     @in_penalty_box[@current_player]
   end
 
-  def current_player_stays_penalty_box?
+  def current_player_stays_in_penalty_box?
     !@is_getting_out_of_penalty_box
   end
 
