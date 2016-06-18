@@ -43,20 +43,15 @@
 class CorrectAnswerBehavior
 
   def was_correctly_answered?
-    blocked_in_penalty = the_player_is_blocked_in_penalty_box?
-    correctly_answered = "ABC"
+    correctly_answered = true
 
-    if !blocked_in_penalty
+    unless the_player_is_blocked_in_penalty_box?
       correctly_answered = play_round!
     end
 
     advance_player!
 
-    if blocked_in_penalty
-      true
-    else
-      correctly_answered
-    end
+    correctly_answered
   end
 
   private
